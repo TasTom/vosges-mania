@@ -37,19 +37,30 @@
         position: fixed;
       }
 
+      /*
+        La borne garde son format portrait 9:16, centrée sur fond noir. Sans
+        cette contrainte, Unity remplit l'écran et CabinetViewport bascule la
+        table en paysage (rotation de 90°) dès que la fenêtre est plus large
+        que haute. Les bandes noires sont le fond du conteneur.
+      */
       #unity-fullscreen-container {
+        align-items: center;
+        background: #000;
+        display: flex;
         height: 100%;
         inset: 0;
+        justify-content: center;
         position: absolute;
         width: 100%;
       }
 
       #unity-canvas {
+        aspect-ratio: 9 / 16;
         background: var(--night);
         display: block;
-        height: 100%;
+        height: auto;
         outline: none;
-        width: 100%;
+        width: min(100%, calc(100vh * 9 / 16));
       }
 
       /* L'écran de chargement appartient à la borne : fond nocturne, titre
