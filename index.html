@@ -1,11 +1,11 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="fr">
   <head>
     <meta charset="utf-8">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <meta name="color-scheme" content="dark">
-    <title>Vosges Mania â€” flipper 3D</title>
+    <title>Vosges Mania — flipper 3D</title>
     <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%2305070e'/%3E%3Cpath d='M12 20h9l6 13 5-13h9L28 48h-8z' fill='%23e85d3f'/%3E%3C/svg%3E">
     <style>
       :root {
@@ -38,9 +38,9 @@
       }
 
       /*
-        La borne garde son format portrait 9:16, centrÃ©e sur fond noir. Sans
-        cette contrainte, Unity remplit l'Ã©cran et CabinetViewport bascule la
-        table en paysage (rotation de 90Â°) dÃ¨s que la fenÃªtre est plus large
+        La borne garde son format portrait 9:16, centrée sur fond noir. Sans
+        cette contrainte, Unity remplit l'écran et CabinetViewport bascule la
+        table en paysage (rotation de 90°) dès que la fenêtre est plus large
         que haute. Les bandes noires sont le fond du conteneur.
       */
       #unity-fullscreen-container {
@@ -63,8 +63,8 @@
         width: min(100%, calc(100vh * 9 / 16));
       }
 
-      /* L'Ã©cran de chargement appartient Ã  la borne : fond nocturne, titre
-         condensÃ©, filet terracotta. Il disparaÃ®t dÃ¨s la premiÃ¨re frame. */
+      /* L'écran de chargement appartient à la borne : fond nocturne, titre
+         condensé, filet terracotta. Il disparaît dès la première frame. */
       #unity-loading {
         align-items: center;
         display: flex;
@@ -198,17 +198,17 @@
       </div>
 
       <div id="unity-loading">
-        <p class="loader__kicker">IUT Vosges Â· flipper 3D</p>
+        <p class="loader__kicker">IUT Vosges · flipper 3D</p>
         <h1 class="loader__title">Vosges <span>Mania</span></h1>
         <div class="loader__track" role="progressbar" aria-label="Chargement du jeu" aria-valuemin="0" aria-valuemax="100">
           <div id="unity-progress-bar-full"></div>
         </div>
-        <p class="loader__label" id="unity-loading-label">Chargement de la tableâ€¦ 0 %</p>
-        <p class="loader__hint">Q / D â€” flippers &nbsp;Â·&nbsp; Espace â€” lanceur &nbsp;Â·&nbsp; Ã‰chap â€” pause</p>
+        <p class="loader__label" id="unity-loading-label">Chargement de la table… 0 %</p>
+        <p class="loader__hint">Q / D — flippers &nbsp;·&nbsp; Espace — lanceur &nbsp;·&nbsp; Échap — pause</p>
       </div>
 
       <div id="unity-warning"></div>
-      <button id="unity-fullscreen-button" type="button" aria-label="Passer en plein Ã©cran" title="Plein Ã©cran">â›¶</button>
+      <button id="unity-fullscreen-button" type="button" aria-label="Passer en plein écran" title="Plein écran">⛶</button>
     </div>
 
     <script>
@@ -230,9 +230,9 @@
       const buildUrl = 'Build';
       const config = {
         arguments: [],
-        dataUrl: buildUrl + '/059e4d8089fe00ac689892bc34e2f65a.data.unityweb',
+        dataUrl: buildUrl + '/ec3a0b71cbb4d47e1554e19aff51920b.data.unityweb',
         frameworkUrl: buildUrl + '/d3ebbbff4c453c9d57b6fcdee73c6596.framework.js.unityweb',
-        codeUrl: buildUrl + '/99f52b655aaa9afeb85d73bd05171128.wasm.unityweb',
+        codeUrl: buildUrl + '/3e6d3692b30b52ae112e3ee7f7993d46.wasm.unityweb',
         streamingAssetsUrl: 'StreamingAssets',
         fullscreenElementID: 'unity-fullscreen-container',
         companyName: "IUT Vosges",
@@ -246,15 +246,15 @@
       config.devicePixelRatio = mobile ? 1 : Math.min(2, Math.max(1.5, window.devicePixelRatio || 1));
 
       const script = document.createElement('script');
-      script.src = buildUrl + '/ed210127e837d3bba8fc9e9f9f9a77ac.loader.js';
+      script.src = buildUrl + '/9c47fbf0cdecee8bb00469548446c101.loader.js';
       script.onload = () => {
         createUnityInstance(canvas, config, (progress) => {
           const percent = Math.round(progress * 100);
           progressBar.style.width = percent + '%';
           progressBar.parentElement.setAttribute('aria-valuenow', String(percent));
           loadingLabel.textContent = progress < 1
-            ? 'Chargement de la tableâ€¦ ' + percent + ' %'
-            : 'EntrÃ©e dans la salle dâ€™arcadeâ€¦';
+            ? 'Chargement de la table… ' + percent + ' %'
+            : 'Entrée dans la salle d’arcade…';
         }).then((unityInstance) => {
           loading.classList.add('is-hidden');
           setTimeout(() => loading.remove(), 600);
@@ -262,18 +262,17 @@
           document.querySelector('#unity-fullscreen-button').onclick = () => {
             unityInstance.SetFullscreen(1);
           };
-          // Un clic sur le dÃ©cor rend le clavier au jeu : sans ce focus, les
-          // flippers ne rÃ©pondent pas aprÃ¨s avoir cliquÃ© Ã  cÃ´tÃ© du canvas.
+          // Un clic sur le décor rend le clavier au jeu : sans ce focus, les
+          // flippers ne répondent pas après avoir cliqué à côté du canvas.
           container.addEventListener('pointerdown', (event) => {
             if (event.target === container || event.target === canvas) canvas.focus();
           });
         }).catch((message) => {
           loading.classList.add('is-hidden');
-          unityShowBanner('Le jeu nâ€™a pas pu dÃ©marrer : ' + message, 'error');
+          unityShowBanner('Le jeu n’a pas pu démarrer : ' + message, 'error');
         });
       };
       document.body.appendChild(script);
     </script>
   </body>
 </html>
-
