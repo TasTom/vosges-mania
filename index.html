@@ -230,9 +230,9 @@
       const buildUrl = 'Build';
       const config = {
         arguments: [],
-        dataUrl: buildUrl + '/ec3a0b71cbb4d47e1554e19aff51920b.data.unityweb',
+        dataUrl: buildUrl + '/1a55f5a3250aa7e2c6ba9bcef82fb700.data.unityweb',
         frameworkUrl: buildUrl + '/d3ebbbff4c453c9d57b6fcdee73c6596.framework.js.unityweb',
-        codeUrl: buildUrl + '/3e6d3692b30b52ae112e3ee7f7993d46.wasm.unityweb',
+        codeUrl: buildUrl + '/1933a19aaf779becb494ea91df2c1cd6.wasm.unityweb',
         streamingAssetsUrl: 'StreamingAssets',
         fullscreenElementID: 'unity-fullscreen-container',
         companyName: "IUT Vosges",
@@ -246,7 +246,7 @@
       config.devicePixelRatio = mobile ? 1 : Math.min(2, Math.max(1.5, window.devicePixelRatio || 1));
 
       const script = document.createElement('script');
-      script.src = buildUrl + '/9c47fbf0cdecee8bb00469548446c101.loader.js';
+      script.src = buildUrl + '/74fce8297e53aa3decea280c01af7928.loader.js';
       script.onload = () => {
         createUnityInstance(canvas, config, (progress) => {
           const percent = Math.round(progress * 100);
